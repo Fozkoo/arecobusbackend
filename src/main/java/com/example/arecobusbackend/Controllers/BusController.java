@@ -1,6 +1,8 @@
 package com.example.arecobusbackend.Controllers;
 
 import com.example.arecobusbackend.DTO.BusScheduleDTO;
+import com.example.arecobusbackend.DTO.BusesDTO;
+import com.example.arecobusbackend.Models.Bus;
 import com.example.arecobusbackend.Services.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,15 @@ public class BusController {
     @Autowired
     private BusService busService;
 
+
+
     @GetMapping("/{busId}/schedules/{dayOfWeekId}")
     public List<BusScheduleDTO> getBusSchedules(@PathVariable Long busId, @PathVariable Long dayOfWeekId) {
         return busService.getBusSchedules(busId, dayOfWeekId);
+    }
+
+    @GetMapping("/getAllBuses")
+    public List<BusesDTO> getAllBuses () {
+        return busService.getAllBuses();
     }
 }

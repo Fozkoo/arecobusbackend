@@ -14,9 +14,8 @@ public class EmpresaService {
     @Autowired
     private EmpresaRepository empresaRepository;
 
-    public ResponseEntity<?> getAllEmpresa (){
-        List<Empresa> empresas = empresaRepository.findAll();
-        return ResponseEntity.ok(empresas);
+    public List<Empresa> getAllEmpresas() {
+        return empresaRepository.findAll();
     }
 
 }
