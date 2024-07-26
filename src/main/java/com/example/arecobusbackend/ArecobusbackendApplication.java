@@ -8,6 +8,7 @@ public class ArecobusbackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ArecobusbackendApplication.class, args);
+
     }
 
 }

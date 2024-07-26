@@ -9,7 +9,8 @@ import lombok.Setter;
 
 import java.time.LocalTime;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "horarios")
 public class Horario {
@@ -23,11 +24,5 @@ public class Horario {
     @Column(name = "destino", nullable = false, length = 45)
     private String destino;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

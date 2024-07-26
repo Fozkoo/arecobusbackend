@@ -20,4 +20,10 @@ public class HorarioService {
         return ResponseEntity.ok(horarios);
     }
 
+    public List<Horario> getProximoHorario(int empresa, int dia, String horarioActual){
+        return  horarioRepository.getProximoSalida(empresa,dia,horarioActual);
+
+    }
+
+
 }
