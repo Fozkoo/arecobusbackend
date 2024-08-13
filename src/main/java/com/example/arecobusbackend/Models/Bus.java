@@ -35,6 +35,17 @@ public class Bus {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "path")
+    private String path;
+
+    public String getPath(){
+        return path;
+    }
+
+    public void setPath(String path){
+        this.path = path;
+    }
+
     // Getters and Setters
     public Integer getId() {
         return id;
