@@ -1,9 +1,6 @@
 package com.example.arecobusbackend.Controllers;
-
-import com.example.arecobusbackend.DTO.BusScheduleDTO;
 import com.example.arecobusbackend.DTO.BusesDTO;
 import com.example.arecobusbackend.DTO.horariosDTO;
-import com.example.arecobusbackend.Models.Bus;
 import com.example.arecobusbackend.Services.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,4 +47,4 @@ public class BusController {
         return ResponseEntity.ok(busInfo);
     }
 
-}
+} 

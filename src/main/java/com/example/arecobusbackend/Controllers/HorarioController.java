@@ -1,5 +1,4 @@
 package com.example.arecobusbackend.Controllers;
-import com.example.arecobusbackend.DTO.horariosDetailsDTO;
 import com.example.arecobusbackend.Models.Horario;
 import com.example.arecobusbackend.Services.HorarioService;
 import org.springframework.beans.factory.annotation.Autowired;
