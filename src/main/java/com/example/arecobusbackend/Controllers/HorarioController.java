@@ -1,4 +1,5 @@
 package com.example.arecobusbackend.Controllers;
+import com.example.arecobusbackend.DTO.horariosDetailsDTO;
 import com.example.arecobusbackend.Models.Horario;
 import com.example.arecobusbackend.Services.HorarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,16 @@ public class HorarioController {
 
     /* TRAE LOS HORARIOS DEL BUS Y DIA ESPECIFICADOS
 
-    @GetMapping("/bus/{idbus}/{diaSemana}")
-    public List<horariosDetailsDTO> getBusDetails(@PathVariable("idbus") int idbus,
-                                                  @PathVariable("diaSemana") int diaSemana) {
-        return horarioService.getBusDetailsWithDay(idbus, diaSemana);
-    }
+
 
     
      */
+
+     @GetMapping("/bus/{idbus}/{diaSemana}")
+     public List<horariosDetailsDTO> getBusDetails(@PathVariable("idbus") int idbus,
+                                                   @PathVariable("diaSemana") int diaSemana) {
+         return horarioService.getBusDetailsWithDay(idbus, diaSemana);
+     }
 
 
 
