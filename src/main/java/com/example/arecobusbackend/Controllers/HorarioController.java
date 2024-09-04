@@ -16,7 +16,7 @@ public class HorarioController {
     @Autowired
     private HorarioService horarioService;
 
-
+    @CrossOrigin
     @GetMapping("/proximo/{idempresa}/{iddiasemana}/{horario}")
     public List<Horario> getProximoHorario(@PathVariable int idempresa, @PathVariable int iddiasemana, String horario ){
         return horarioService.getProximoHorario(idempresa,iddiasemana,horario);
@@ -29,7 +29,7 @@ public class HorarioController {
 
     
      */
-
+     @CrossOrigin
      @GetMapping("/bus/{idbus}/{diaSemana}")
      public List<horariosDetailsDTO> getBusDetails(@PathVariable("idbus") int idbus,
                                                    @PathVariable("diaSemana") int diaSemana) {
