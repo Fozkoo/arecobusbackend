@@ -92,10 +92,29 @@ public class BusService {
             return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, horarios);
         }).collect(Collectors.toList());
     }
+    public List<horariosDTO> getBusInfoconIdDia(Integer iddia) {
+        List<Object[]> results = busRepository.getBusInfoConIdDia(iddia);
+
+        return results.stream().map(row -> {
+            int id = (Integer) row[0];
+            int numeroLinea = (Integer) row[1];
+            String destino = (String) row[2];
+            String puntoPartida = (String) row[3];
+            String empresaNombre = (String) row[4];
+            int precio = (int) row[5];
+            String image = (String) row[6];
+            String path = (String) row[7];  // Mapea el nuevo campo
+            String horariosConcat = (String) row[8];
+
+            List<String> horarios = List.of(horariosConcat.split(", "));
+
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, horarios);
+        }).collect(Collectors.toList());
+
+
+    }
 
 
 
 
-
-
-}
+    }

@@ -51,9 +51,18 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             nativeQuery = true)
     List<Object[]> getBusInfoWithHorarios();
 
+    @Query(value="SELECT b.idbus,b.numero_linea,b.destino,b.punto_partida," +
+            "e.nombre AS empresa_nombre,b.precio,b.image,b.path," +
+            "GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios  from empresa e " +
+            "INNER JOIN bus b ON e.idempresa=b.empresa_idempresa " +
+            "INNER JOIN bus_has_horarios bu ON b.idbus=bu.bus_idbus " +
+            "INNER JOIN horarios h ON bu.horarios_idhorarios=h.idhorarios " +
+            "INNER JOIN dias_semana_has_horarios dh ON dh.horarios_idhorarios=h.idhorarios " +
+            "INNER JOIN dias_semana d ON dh.dias_semana_iddias_semana=d.iddias_semana " +
+            "WHERE d.iddias_semana=:iddia " +
+            "GROUP BY b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path" ,nativeQuery = true )
 
-
-
+    List<Object[]> getBusInfoConIdDia(@Param("iddia") Integer idbus);
    /* Esta es la consulta que me filtra por id */
 
     @Query(value = "SELECT " +

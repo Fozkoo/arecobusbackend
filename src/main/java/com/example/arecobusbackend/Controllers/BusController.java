@@ -47,4 +47,11 @@ public class BusController {
         return ResponseEntity.ok(busInfo);
     }
 
+    @CrossOrigin
+    @GetMapping("/getBusInfoConIdDia/{iddia}")
+    public ResponseEntity<List<horariosDTO>> getBusInfoConIdDia(@PathVariable Integer iddia) {
+        List<horariosDTO> busInfo = busService.getBusInfoconIdDia(iddia);
+        return ResponseEntity.ok(busInfo);
+    }
+
 } 
