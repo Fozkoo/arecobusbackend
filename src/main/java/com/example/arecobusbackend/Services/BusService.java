@@ -20,6 +20,7 @@ public class BusService {
 
     @Autowired
     private BusRepositoryE busRepositoryE;
+    private String puntoPartida;
 
     public List<BusScheduleDTO> getBusSchedules(Long busId, Long dayOfWeekId) {
         return busRepository.findBusSchedulesByBusIdAndDayOfWeek(busId, dayOfWeekId);
@@ -61,12 +62,13 @@ public class BusService {
             String empresaNombre = (String) row[4];
             int precio = (int) row[5];
             String image = (String) row[6];
-            String path = (String) row[7];  // Mapea el nuevo campo
-            String horariosConcat = (String) row[8];
+            String path = (String) row[7];
+            String origen = (String) row[8];
+            String horariosConcat = (String) row[9];
 
             List<String> horarios = List.of(horariosConcat.split(", "));
 
-            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, horarios);
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, null, horarios);  // origen es null aquí
         }).collect(Collectors.toList());
     }
 
@@ -84,14 +86,18 @@ public class BusService {
             String empresaNombre = (String) row[4];
             int precio = (int) row[5];
             String image = (String) row[6];
-            String path = (String) row[7];  // Mapea el nuevo campo
-            String horariosConcat = (String) row[8];
+            String path = (String) row[7];
+            String origen = (String) row[8];  // Asume que el campo "origen" está en el índice 9
+            String horariosConcat = (String) row[9];
 
             List<String> horarios = List.of(horariosConcat.split(", "));
 
-            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, horarios);
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios); // Añade el campo "origen"
         }).collect(Collectors.toList());
     }
+
+
+
     public List<horariosDTO> getBusInfoconIdDia(Integer iddia) {
         List<Object[]> results = busRepository.getBusInfoConIdDia(iddia);
 
@@ -104,11 +110,11 @@ public class BusService {
             int precio = (int) row[5];
             String image = (String) row[6];
             String path = (String) row[7];  // Mapea el nuevo campo
-            String horariosConcat = (String) row[8];
-
+            String origen = (String) row[8];  // Asume que el campo "origen" está en el índice 9
+            String horariosConcat = (String) row[9];
             List<String> horarios = List.of(horariosConcat.split(", "));
 
-            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, horarios);
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios);
         }).collect(Collectors.toList());
 
 

@@ -3,7 +3,6 @@ package com.example.arecobusbackend.DTO;
 import java.util.List;
 
 public class horariosDTO {
-
     private int id;
     private int numeroLinea;
     private String destino;
@@ -11,10 +10,13 @@ public class horariosDTO {
     private String empresaNombre;
     private int precio;
     private String image;
-    private String path;  // Agrega este campo
+    private String path;
+    private String origen; // Si está presente
     private List<String> horarios;
 
-    public horariosDTO(int id, int numeroLinea, String destino, String puntoPartida, String empresaNombre, int precio, String image, String path, List<String> horarios) {
+    // Constructor que acepta la lista de horarios
+    public horariosDTO(int id, int numeroLinea, String destino, String puntoPartida, String empresaNombre,
+                       int precio, String image, String path, String origen, List<String> horarios) {
         this.id = id;
         this.numeroLinea = numeroLinea;
         this.destino = destino;
@@ -22,11 +24,21 @@ public class horariosDTO {
         this.empresaNombre = empresaNombre;
         this.precio = precio;
         this.image = image;
-        this.path = path;  // Inicializa este campo
+        this.path = path;
+        this.origen = origen; // Si está presente
         this.horarios = horarios;
     }
 
+    // Getters y setters...
+
+
     // Getters y Setters
+
+    public String getOrigen(){ return origen;}
+
+    public void setOrigen(String origen){ this.origen = origen;}
+
+
     public int getId() {
         return id;
     }
