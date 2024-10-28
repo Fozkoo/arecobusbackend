@@ -5,7 +5,6 @@ import com.example.arecobusbackend.DTO.BusesDTO;
 import com.example.arecobusbackend.DTO.horariosDTO;
 import com.example.arecobusbackend.Models.Bus;
 import com.example.arecobusbackend.Repositories.BusRepository;
-import com.example.arecobusbackend.Repositories.BusRepositoryE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,7 @@ public class BusService {
     private BusRepository busRepository;
 
     @Autowired
-    private BusRepositoryE busRepositoryE;
-    private String puntoPartida;
+
 
     public List<BusScheduleDTO> getBusSchedules(Long busId, Long dayOfWeekId) {
         return busRepository.findBusSchedulesByBusIdAndDayOfWeek(busId, dayOfWeekId);
