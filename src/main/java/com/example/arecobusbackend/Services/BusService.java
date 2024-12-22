@@ -17,7 +17,7 @@ public class BusService {
     @Autowired
     private BusRepository busRepository;
 
-    @Autowired
+
 
 
     public List<BusScheduleDTO> getBusSchedules(Long busId, Long dayOfWeekId) {

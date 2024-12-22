@@ -22,6 +22,8 @@ public class Coodenadas {
     @JoinColumn(name = "recorrido_idrecorrido", referencedColumnName = "idrecorrido", nullable = false)
     private Recorrido recorridoByRecorridoIdrecorrido;
 
+
+
     public int getIdcoodenadas() {
         return idcoodenadas;
     }
