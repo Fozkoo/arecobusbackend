@@ -1,8 +1,13 @@
 package com.example.arecobusbackend.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Coodenadas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -20,7 +25,9 @@ public class Coodenadas {
 
     @ManyToOne
     @JoinColumn(name = "recorrido_idrecorrido", referencedColumnName = "idrecorrido", nullable = false)
+    @JsonBackReference
     private Recorrido recorridoByRecorridoIdrecorrido;
+
 
 
 

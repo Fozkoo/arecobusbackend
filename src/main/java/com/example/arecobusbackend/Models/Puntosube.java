@@ -1,10 +1,14 @@
 package com.example.arecobusbackend.Models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Time;
 
 @Entity
+@Getter
+@Setter
 public class Puntosube {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -12,10 +16,10 @@ public class Puntosube {
     private int idpuntosube;
     @Basic
     @Column(name = "longitud")
-    private Double longitud;
+    private String longitud;
     @Basic
     @Column(name = "latitud")
-    private Double latitud;
+    private String latitud;
     @Basic
     @Column(name = "descripcion")
     private String descripcion;
@@ -29,6 +33,18 @@ public class Puntosube {
     @Column(name = "horariocierre")
     private Time horariocierre;
 
+    @Basic
+    @Column(name = "nombre")
+    private String nombre;
+
+    public String getNombre () {
+        return nombre;
+    }
+
+    public void setNombre (String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getIdpuntosube() {
         return idpuntosube;
     }
@@ -37,19 +53,19 @@ public class Puntosube {
         this.idpuntosube = idpuntosube;
     }
 
-    public Double getLongitud() {
+    public String getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(Double longitud) {
+    public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
 
-    public Double getLatitud() {
+    public String getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(Double latitud) {
+    public void setLatitud(String latitud) {
         this.latitud = latitud;
     }
 

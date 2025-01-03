@@ -18,6 +18,7 @@ public class Recorrido {
     private Collection<Coodenadas> coodenadasByIdrecorrido;
     @OneToMany(mappedBy = "recorridoByRecorridoIdrecorrido")
     private Collection<Paradas> paradasByIdrecorrido;
+
     @ManyToOne
     @JoinColumn(name = "bus_idbus", referencedColumnName = "idbus", nullable = false)
     private Bus busByBusIdbus;

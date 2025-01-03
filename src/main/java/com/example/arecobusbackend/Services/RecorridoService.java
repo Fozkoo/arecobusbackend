@@ -1,6 +1,7 @@
 package com.example.arecobusbackend.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.example.arecobusbackend.Models.Recorrido;
 import com.example.arecobusbackend.DTO.RecorridoCoordenadasDTO;
@@ -32,6 +33,14 @@ public class RecorridoService {
 
         return dto;
     }
+
+    public Recorrido obtenerPorId(int id) {
+        return recorridoRepository.findById(id).orElse(null);
+    }
+
+
+
+
 
 
 }
