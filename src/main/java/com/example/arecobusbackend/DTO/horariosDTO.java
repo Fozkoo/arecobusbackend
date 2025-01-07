@@ -13,10 +13,11 @@ public class horariosDTO {
     private String path;
     private String origen; // Si está presente
     private List<String> horarios;
+    private String metodo;
 
     // Constructor que acepta la lista de horarios
     public horariosDTO(int id, int numeroLinea, String destino, String puntoPartida, String empresaNombre,
-                       int precio, String image, String path, String origen, List<String> horarios) {
+                       int precio, String image, String path, String origen, List<String> horarios, String metodo) {
         this.id = id;
         this.numeroLinea = numeroLinea;
         this.destino = destino;
@@ -27,12 +28,22 @@ public class horariosDTO {
         this.path = path;
         this.origen = origen; // Si está presente
         this.horarios = horarios;
+        this.metodo = metodo;
     }
 
     // Getters y setters...
 
 
     // Getters y Setters
+
+
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
+    }
 
     public String getOrigen(){ return origen;}
 

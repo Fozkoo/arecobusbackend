@@ -36,7 +36,8 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             "    b.precio, " +
             "    b.image, " +
             "    b.path, " +
-            "    b.origen, " +  // Agregada esta línea
+            "    b.origen, " +
+            "    m.tipo AS metodo_pago, " + // Cambiado a m.tipo
             "    GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios " +
             "FROM " +
             "    bus b " +
@@ -46,10 +47,13 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             "    bus_has_horarios bh ON b.idbus = bh.bus_idbus " +
             "JOIN " +
             "    horarios h ON bh.horarios_idhorarios = h.idhorarios " +
+            "JOIN " +
+            "    mediosdepago m ON b.mediosdepago_idmediosdepago = m.idmediosdepago " +
             "GROUP BY " +
-            "    b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen",
+            "    b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen, m.tipo",
             nativeQuery = true)
     List<Object[]> getBusInfoWithHorarios();
+
 
 
     /* Consulta para filtrar por el ID del día e incluir origen */
@@ -80,8 +84,9 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             "    b.precio, " +
             "    b.image, " +
             "    b.path, " +
-            "    b.origen, " +  // Agregada esta línea
-            "    GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios " +
+            "    b.origen, " +
+            "    GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios, " +
+            "    m.tipo AS metodo " +
             "FROM " +
             "    bus b " +
             "JOIN " +
@@ -90,11 +95,18 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             "    bus_has_horarios bh ON b.idbus = bh.bus_idbus " +
             "JOIN " +
             "    horarios h ON bh.horarios_idhorarios = h.idhorarios " +
+            "JOIN " +
+            "    mediosdepago m ON b.mediosdepago_idmediosdepago = m.idmediosdepago " +
             "WHERE " +
             "    b.idbus = :idbus " +
             "GROUP BY " +
-            "    b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen", // Modificación aquí
+            "    b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen, m.tipo",
             nativeQuery = true)
     List<Object[]> getBusInfoWithHorariosById(@Param("idbus") Integer idbus);
+
+
+
+
+
 
 }

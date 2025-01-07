@@ -63,10 +63,11 @@ public class BusService {
             String path = (String) row[7];
             String origen = (String) row[8];
             String horariosConcat = (String) row[9];
+            String metodo = (String) row[10];
 
             List<String> horarios = List.of(horariosConcat.split(", "));
 
-            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, null, horarios);  // origen es null aquí
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios, metodo);  // origen es null aquí
         }).collect(Collectors.toList());
     }
 
@@ -85,12 +86,15 @@ public class BusService {
             int precio = (int) row[5];
             String image = (String) row[6];
             String path = (String) row[7];
-            String origen = (String) row[8];  // Asume que el campo "origen" está en el índice 9
-            String horariosConcat = (String) row[9];
+            String origen = (String) row[8];  // Origen
+            String horariosConcat = (String) row[9];  // Este es el valor con los horarios concatenados
+            String metodo = (String) row[10]; // Este es el valor con el tipo de medio de pago (metodo)
 
-            List<String> horarios = List.of(horariosConcat.split(", "));
+            // Ahora verifica que los horarios estén correctamente asignados
+            List<String> horarios = List.of(horariosConcat.split(", ")); // Aquí separas correctamente los horarios
 
-            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios); // Añade el campo "origen"
+            // Devuelve el DTO con los valores correctamente asignados
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios, metodo);
         }).collect(Collectors.toList());
     }
 
@@ -111,8 +115,8 @@ public class BusService {
             String origen = (String) row[8];  // Asume que el campo "origen" está en el índice 9
             String horariosConcat = (String) row[9];
             List<String> horarios = List.of(horariosConcat.split(", "));
-
-            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios);
+            String metodo = (String) row[10];
+            return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios, metodo);
         }).collect(Collectors.toList());
 
 
