@@ -1,8 +1,12 @@
 package com.example.arecobusbackend.Models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Paradas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
