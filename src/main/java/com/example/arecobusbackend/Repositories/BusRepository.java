@@ -37,8 +37,8 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             "    b.image, " +
             "    b.path, " +
             "    b.origen, " +
-            "    m.tipo AS metodo_pago, " + // Cambiado a m.tipo
-            "    GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios " +
+            "    GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios," +
+            "    m.tipo AS metodo_pago " +
             "FROM " +
             "    bus b " +
             "JOIN " +
@@ -59,17 +59,20 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
     /* Consulta para filtrar por el ID del día e incluir origen */
 
     @Query(value = "SELECT b.idbus, b.numero_linea, b.destino, b.punto_partida, " +
-            "e.nombre AS empresa_nombre, b.precio, b.image, b.path, b.origen, " +  // Agregada esta línea
-            "GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios " +
+            "e.nombre AS empresa_nombre, b.precio, b.image, b.path, b.origen, " +
+            "GROUP_CONCAT(h.horario ORDER BY h.horario ASC SEPARATOR ', ') AS horarios, " +  // Agregada la coma aquí
+            "m.tipo AS metodo " +
             "FROM empresa e " +
             "INNER JOIN bus b ON e.idempresa = b.empresa_idempresa " +
             "INNER JOIN bus_has_horarios bu ON b.idbus = bu.bus_idbus " +
             "INNER JOIN horarios h ON bu.horarios_idhorarios = h.idhorarios " +
+            "JOIN mediosdepago m ON b.mediosdepago_idmediosdepago = m.idmediosdepago " +
             "INNER JOIN dias_semana_has_horarios dh ON dh.horarios_idhorarios = h.idhorarios " +
             "INNER JOIN dias_semana d ON dh.dias_semana_iddias_semana = d.iddias_semana " +
-            "WHERE d.iddias_semana = :iddia " +
-            "GROUP BY b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen", // Modificación aquí
-            nativeQuery = true)
+            "WHERE d.iddias_semana = ? " +
+            "GROUP BY b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen, m.tipo", // Modificación aquí
+    nativeQuery =true)
+
     List<Object[]> getBusInfoConIdDia(@Param("iddia") Integer idbus);
 
 
@@ -103,10 +106,6 @@ public interface BusRepository extends CrudRepository<Bus, Long> {
             "    b.idbus, b.numero_linea, b.destino, b.punto_partida, e.nombre, b.precio, b.image, b.path, b.origen, m.tipo",
             nativeQuery = true)
     List<Object[]> getBusInfoWithHorariosById(@Param("idbus") Integer idbus);
-
-
-
-
 
 
 }

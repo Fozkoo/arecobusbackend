@@ -114,8 +114,8 @@ public class BusService {
             String path = (String) row[7];  // Mapea el nuevo campo
             String origen = (String) row[8];  // Asume que el campo "origen" está en el índice 9
             String horariosConcat = (String) row[9];
-            List<String> horarios = List.of(horariosConcat.split(", "));
             String metodo = (String) row[10];
+            List<String> horarios = List.of(horariosConcat.split(", "));
             return new horariosDTO(id, numeroLinea, destino, puntoPartida, empresaNombre, precio, image, path, origen, horarios, metodo);
         }).collect(Collectors.toList());
 

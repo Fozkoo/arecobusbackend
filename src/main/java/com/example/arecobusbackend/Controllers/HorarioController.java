@@ -26,7 +26,6 @@ public class HorarioController {
     /* TRAE LOS HORARIOS DEL BUS Y DIA ESPECIFICADOS
 
 
-
     
      */
      @CrossOrigin
@@ -35,9 +34,5 @@ public class HorarioController {
                                                    @PathVariable("diaSemana") int diaSemana) {
          return horarioService.getBusDetailsWithDay(idbus, diaSemana);
      }
-
-
-
-
 
 }
