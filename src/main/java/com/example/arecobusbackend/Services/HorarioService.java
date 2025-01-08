@@ -40,21 +40,6 @@ public class HorarioService {
 
     }
 
-
-    /*
-    public List<Object[]> getBusDetailsWithDay(int idbus, int diaSemana) {
-        return horarioRepository.findBusDetailsWithDay(idbus, diaSemana);
-    }
-
-
-     */
-
-
-
-
-
-
-
     public List<horariosDetailsDTO> getBusDetailsWithDay(int idbus, int diaSemana) {
         List<Object[]> results = horarioRepository.findBusDetailsWithDay(idbus, diaSemana);
 
@@ -62,32 +47,19 @@ public class HorarioService {
 
         for (Object[] result : results) {
             int busId = (int) result[0];
-            Time horarioTime = (Time) result[4];  // El valor horario como Time
-            String horario = horarioTime.toString();  // Convertir Time a String
+            Time horarioTime = (Time) result[4];
+            String horario = horarioTime.toString();
 
             if (!busesMap.containsKey(busId)) {
                 horariosDetailsDTO busDetails = new horariosDetailsDTO(
                         (int) result[0],         // idbus
                         (int) result[1],         // numeroLinea
-                        (String) result[2],      // destino
-                        "puntoPartidaEjemplo",   // Punto de partida (reemplazar con valor real)
-                        (String) result[3],      // empresaNombre
-                        0,                       // precio (reemplazar con valor real)
-                        "imageEjemplo",          // image (reemplazar con valor real)
-                        "pathEjemplo",           // path (reemplazar con valor real)
                         new ArrayList<>()        // horarios
                 );
                 busesMap.put(busId, busDetails);
             }
-
-            busesMap.get(busId).getHorarios().add(horario);  // Agregar el horario convertido a la lista de horarios
+            busesMap.get(busId).getHorarios().add(horario);
         }
-
         return new ArrayList<>(busesMap.values());
     }
-
-
-
-
-
 }

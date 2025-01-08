@@ -27,7 +27,4 @@ public class RecorridoController {
         return recorridoService.getRecorridoConCoordenadas(idrecorrido);
     }
 
-
-
-
 }
